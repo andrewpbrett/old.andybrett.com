@@ -1,0 +1,4 @@
+<% @posts.each do |post| %>
+<%= render :partial => post %>
+<p><%= link_to post.approved_comments.size == 0 ? "Add a comment" : "Comments (" + post.approved_comments.size.to_s + ")", post %></p>
+<% end %>

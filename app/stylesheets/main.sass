@@ -1,0 +1,83 @@
+// Colors
+
+!green = #227700
+!blue = #2C3392
+!light_blue = #5588aa
+
+body
+  :background-color white
+  :font-family "Trebuchet MS"
+  :font-size 0.9em
+  :color black
+
+h1, h2, h3
+  :color = !green
+  :font-family Helvetica
+  h1
+    :font-size 2em
+  h2
+    :font-size 1.8em
+  h3
+    :font-size 1.6em
+
+div.main
+  :margin-top 3%
+  :margin-left auto
+  :margin-right auto
+  :border = !green 1px "solid"
+  :width 40em
+  :padding 30px
+  :padding-top 20px
+
+span.nav_bar
+  :font-size 1.05em
+
+span
+  &.res_header
+    :font-size large
+    :font-weight bold
+  &.experience
+    :font-size larger
+    :font-weight bold
+  &.experience_sub
+    :font-weight bold
+
+
+img#main_image
+  :padding 20px
+  :padding-left 0
+
+a
+  :text-decoration none
+  :font-weight bold
+  &:link
+    :color = !blue
+  &:visited
+    :color = !light_blue
+  &:hover
+    :text-decoration underline
+  &.header_link
+    :color = !green
+
+div.green_line
+  :border-bottom = !green "solid" 1px
+
+div.short_green_line
+  :border-top = !green "solid" 1px
+  :width 250px
+  :height 3px
+
+div.spacer
+  &#home
+    :clear left
+    :height 1px
+
+div#about
+  :width 250px
+  
+div#left_container
+  :width 250px
+  :float left
+
+div#right_containeri
+  :float right

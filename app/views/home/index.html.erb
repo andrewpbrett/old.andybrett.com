@@ -1,0 +1,16 @@
+<div id="left_container">
+<%= image_tag "andy_brett.jpg", :title => "Andy Brett", :id => "main_image" %>
+<div id="about">
+Andy Brett is a <%= link_to "writer", blog_url %>, <a href="http://www.crunchbase.com">engineer</a>, and <a href="http://www.enduranceaventure.com/">athlete</a> living in Silicon Valley.
+</div>
+</div>
+<div id="right_container">
+<BR>
+<span style="font-weight:bold;">Latest:</span>
+<BR><BR>
+<% @posts.each do |p| %>
+<span class="post_short"><%= link_to p.title, p %></span><br />
+<% end %>
+</div>
+
+<div class="spacer" id="home"></div>

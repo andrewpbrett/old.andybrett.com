@@ -1,0 +1,30 @@
+<%= render :partial => @post %>
+<div class="post_post_spacer"></div>
+<% unless @post.comments.size == 0 %>
+  <h3 class="comments_header">Comments</h3>
+<% end %>
+
+<div id="comments">
+  <%= render :partial => @post.approved_comments %>
+</div>
+<% form_for Comment.new, :url => comments_url do |f| %>
+  <%="<input type='hidden' id='post_id' name='post_id' value=#{@post.id} />" %>
+  <p>
+    <%= f.label "comment:" %><br />
+    <%= f.text_area :text, :rows => 10 %>
+  </p>
+  <p>
+    <span class="comment_form_label"><strong><%= f.label "name" %></strong>&nbsp;</span>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <span class="comment_form_label"><%= f.label "email" %>&nbsp;</span>
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <span class="comment_form_label"><label>URL</label>&nbsp;</span>
+    <%= f.text_field :url %>
+  <p>
+    <%= f.submit "Add Comment" %>
+  </p>
+<% end %>

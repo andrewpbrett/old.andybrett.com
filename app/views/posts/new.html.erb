@@ -1,0 +1,16 @@
+<div id="flash"><%= flash[:notice]%></div>
+<h3>New Post</h3>
+<% form_for @post do |f| %>
+<%= f.error_messages %>
+<%= f.label :title %>
+<%= f.text_field :title %>
+<BR><BR>
+<%= f.label :body %>
+<BR>
+<%= f.text_area :body %>
+<BR><BR>
+<%= f.check_box :published %>
+<%= f.label :published %>
+<BR><BR>
+<%= f.submit "Save" %>
+<% end %>

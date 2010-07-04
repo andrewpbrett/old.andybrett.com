@@ -1,0 +1,15 @@
+<% div_for comment do %>
+  <p>
+    <span class="comment_author"><strong>
+      <%= link_to_unless(comment.url.blank?, comment.name, comment.url) do
+            comment.name
+          end %>
+    </strong></span>
+  </p>
+  <p>
+    <%= comment.text %>
+  </p>
+  <p>  
+    <span class="comment_time"><%= "Posted " + gmail_date_format(comment.created_at) %></span>
+  </p>
+<% end %>
