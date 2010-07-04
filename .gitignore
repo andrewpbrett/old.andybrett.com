@@ -1,0 +1,7 @@
+db/*.sqlite3
+log/*.log
+tmp/**/*
+*.swp
+.project
+config/database.yml
+config/environment.rb
