@@ -7,13 +7,13 @@
 # Visit http://www.pragmaticprogrammer.com/titles/rails3 for more book information.
 #---
 # be sure to change these
-set :user, 'www-data'
+set :user, 'deployer'
 set :domain, '67.23.3.35'
 set :application, 'andy'
 
 # file paths
-set :repository,  "#{user}@#{domain}:/home/git/apps/#{application}" 
-set :deploy_to, "/deployed/apps/#{application}" 
+set :repository,  "git@github.com:andrewpbrett/andybrett.com.git"
+set :deploy_to, "/var/www/#{application}" 
 
 # distribute your applications across servers (the instructions below put them
 # all on the same server, defined above as 'domain', adjust as necessary)
@@ -43,11 +43,10 @@ set :use_sudo, false
 
 after "deploy:update_code", "deploy:chown"
 
-# task which causes Passenger to initiate a restart
 namespace :deploy do
   desc "Change owner"
   task :chown, :roles => :app do
-    run "chown www-data:www-data -R #{latest_release}"
+    run "chown deployer:apps -R #{latest_release}"
   end
   desc "Restart appliction"  
   task :restart do
@@ -55,10 +54,7 @@ namespace :deploy do
   end
 end
 
-# optional task to reconfigure databases
-#after "deploy:update_code", :configure_database
-#desc "copy database.yml into the current release path"
-#task :configure_database, :roles => :app do
-#  db_config = "#{deploy_to}/config/database.yml"
-#  run "cp #{db_config} #{release_path}/config/database.yml"
-#end
+after "deploy" do 
+  run "cp #{shared_path}/config/database.yml #{current_path}/config/database.yml"
+  run "cp #{shared_path}/config/environment.rb #{current_path}/config/environment.rb"  
+end
