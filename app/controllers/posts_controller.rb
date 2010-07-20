@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  require 'yaml'
+  
   layout 'home'
 
   before_filter :authenticate, :except => [:index, :show]
@@ -21,7 +23,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     redirect_to blog_url unless @post.published
-    @page_title = "Citing the Text"
+    @page_title = @post.title
   end
 
   def edit
@@ -38,7 +40,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @page_title = "Citing the Text"
+    @page_title = "Andrew P. Brett: Citing the Text"
     @posts = Post.find(:all, :order => "created_at DESC", :conditions => { :published => true } )
 
     respond_to do |format|
@@ -54,8 +56,9 @@ class PostsController < ApplicationController
   private
 
   def authenticate
+    config = YAML.load_file("config/passwords.yml")
     authenticate_or_request_with_http_basic do |user, pass|
-      user == "andy" && pass == "tw1fbTLF"
+      user == "andy" && pass == config["posts"]["new"]
     end
   end
 end

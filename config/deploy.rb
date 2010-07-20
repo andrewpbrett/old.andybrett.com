@@ -56,5 +56,6 @@ end
 
 after "deploy" do 
   run "cp #{shared_path}/config/database.yml #{current_path}/config/database.yml"
+  run "cp #{shared_path}/config/passwords.yml #{current_path}/config/passwords.yml"  
   run "cp #{shared_path}/config/environment.rb #{current_path}/config/environment.rb"  
 end
